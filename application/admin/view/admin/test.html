@@ -1,0 +1,610 @@
+<html style="height: auto; min-height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>设备中心</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Bootstrap 3.3.7 -->
+    <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/static/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Ionicons -->
+    <link href="/static/admin/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Morris charts -->
+    <link href="/static/admin/css/morris.css" rel="stylesheet">
+
+    <!--&lt;!&ndash;jquery-ui&ndash;&gt;-->
+    <link href="/static/admin/css/jquery-ui.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/admin/css/AdminLTE.css">
+    <link rel="stylesheet" href="/static/admin/css/common.css">
+
+    <!--jQuery 3 &ndash;&gt;-->
+    <script src="/static/admin/js/jquery.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/static/admin/js/html5shiv.min.js"></script>
+    <script src="/static/admin/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+<div class="wrapper" style="height: auto; min-height: 100%;">
+    <header class="main-header">
+        <!-- Logo -->
+        <a class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>IOT</b> 管理后台</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b></b>IOT设备管理后台</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <!--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">-->
+            <!--<span class="sr-only">切换导航</span>-->
+            <!--</a>-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/static/admin/img/avatar.png" class="user-image" alt="User Image">
+                            <span class="hidden-xs">体验账号</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="/static/admin/img/avatar.png" class="img-circle" alt="User Image">
+                                <p>
+                                    体验账号                                    <small>demo</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#"></a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="userinf" class="btn btn-default btn-flat">个人资料</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="登录.html" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!--Sidebar user panel-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="/static/admin/img/avatar.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p></p>
+                    <a><i class="fa fa-circle text-success"></i> 正常</a>
+                </div>
+            </div>
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu tree" data-widget="tree">
+                <li>
+                    <a href="monitor">
+                        <i class="fa fa-bar-chart"></i>
+                        <span>监控中心</span>
+                    </a>
+                </li><li>
+                <a href="alarm">
+                    <i class="fa fa-bell"></i>
+                    <span>告警中心</span>
+                </a>
+            </li><li class="active">
+                <a href="device">
+                    <i class="fa fa-cubes"></i>
+                    <span>设备中心</span>
+                </a>
+            </li><li class="treeview"><a href="javascript:void(0);"><i class="fa fa-user-secret"></i><span>用户中心</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+            </a><ul class="treeview-menu"><li>
+                <a href="UserManagement">
+                    <i class="fa fa-user-secret"></i>
+                    <span>用户管理</span>
+                </a>
+            </li><li>
+                <a href="permit">
+                    <i class="fa fa-group"></i>
+                    <span>权限管理</span>
+                </a>
+            </li><li>
+                <a href="userlog">
+                    <i class="fa fa-close"></i>
+                    <span>用户日志</span>
+                </a>
+            </li><li>
+                <a href="userinf">
+                    <i class="fa fa-edit"></i>
+                    <span>个人资料</span>
+                </a>
+            </li></ul></li><li class="treeview"><a href="javascript:void(0);"><i class="fa fa-cog"></i><span>系统管理</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+            </a><ul class="treeview-menu"><li>
+                <a href="systemerror">
+                    <i class="fa fa-bell"></i>
+                    <span>触发器管理</span>
+                </a>
+            </li><li>
+                <a href="menu">
+                    <i class="fa fa-th-list"></i>
+                    <span>菜单管理</span>
+                </a>
+            </li><li>
+                <a href="log">
+                    <i class="fa fa-info-circle"></i>
+                    <span>系统运行日志</span>
+                </a>
+            </li></ul></li>            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 480px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                设备中心            </h1>
+            <ol class="breadcrumb">
+                <li><a href="monitor"><i class="fa fa-home"></i> 主页</a></li>
+                <li><a href="javascript:void(0);"><i class="fa fa-cubes"></i> 设备中心</a></li>            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content" id="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-body">
+                            <form class="form-inline" name="searchForm" id="searchForm" action="device" method="GET">
+
+                                <div class="form-group">
+                                    <input type="text" value="" name="keywords" id="keywords" class="form-control" placeholder="设备名称/设备ID/设备状态">
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> 查询
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <button onclick="clear_form()" class="btn btn-default" type="button"><i class="fa  fa-eraser"></i> 清空查询
+                                    </button>
+                                </div>
+
+                                <div class="form-group ">
+                                    <a href="#" class="btn btn-info">
+                                        <i class="fa fa-download"></i>
+                                        导出为excel文件
+                                    </a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <!--数据列表页头部-->
+                        <div class="box-header with-border">
+                            <h3 class="box-title">设备中心</h3>
+                            共<span style="font-size: 18px"><strong>54</strong></span>条记录
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-btn">
+                                        <a href="add_device" class="btn btn-default pull-right">
+                                            <i class="fa fa-plus"></i>
+                                            添加设备                </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+
+                        <div class="box-body table-responsive ">
+                            <table id="datalist" class="table table-hover table-bordered datatable" width="100%">
+                                <thead>
+                                <tr class="show-datatable-list-title">
+                                    <th>设备id</th>
+                                    <th>设备名称</th>
+                                    <th>设备状态</th>
+                                    <th>设备协议</th>
+                                    <th>设备创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+                                    <td>35872778</td>
+                                    <td>剃须刀2</td>
+
+                                    <td>离线</td>
+
+                                    <td>MQTT</td>
+                                    <td>2018-07-16 15:32:33</td>
+
+                                    <td>
+
+                                        <a href="systemerror?id=35872778" class="btn btn-default btn-sm margin">
+                                            <i class="fa fa-edit"></i>
+                                            编辑设备
+                                        </a>
+
+                                        <a data-toggle="modal" data-target="#modal" class="btn btn-default btn-sm margin" title="删除" onclick="del(35872778)">
+                                            <i class="fa fa-close"></i>
+                                            删除设备
+                                        </a>
+
+                                        <a href="dataflow?id=35872778" class="btn btn-info btn-sm ">
+                                            <i class="fa fa-area-chart"></i>
+                                            查看数据流
+                                        </a>
+
+                                        <a href="javascript:void(0);" class="btn btn-default btn-sm " onclick="device_send_command(35872778)">
+                                            <i class="fa fa-send "></i>
+                                            下发命令
+                                        </a>
+
+
+                                        <a href="history?did=35872778" class="btn btn-default btn-sm ">
+                                            <i class="fa fa-history"></i>
+                                            查看历史命令
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+
+
+                            <div>
+
+                                <div class="page-list-select-rows" style="display: inline-block">
+                                    <label class="control-label pull-left" style="margin-right: 10px; font-weight: 100;">
+                                        <small>每页显示</small>&nbsp;
+                                        <select class="input-sm " onchange="change_page_rows(this)" id="change_page_rows">
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                        &nbsp;<small>条记录</small>
+                                    </label>
+                                </div>
+
+                                <div class="dataTables_paginate paging_simple_numbers" style="display: inline-block">
+                                    <ul class="pagination"><li class="disabled"><span>«</span></li> <li class="active"><span>1</span></li><li><a href="device?page=2">2</a></li><li><a href="device?page=3">3</a></li><li><a href="device?page=4">4</a></li><li><a href="device?page=5">5</a></li><li><a href="device?page=6">6</a></li> <li><a href="device?page=2">»</a></li></ul>                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+
+            <div class="modal fade " id="device-send-command-dialog" tabindex="-1" role="dialog" data-backdrop="false"
+                 aria-labelledby="myModalLabel" style="display: none; padding-right: 17px;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header"><h4 class="modal-title">给设备下发命令</h4></div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-6">
+                                        <div class="send-command-dialog">
+                                            <form role="form" class=" dialog-form" data-parsley-validate>
+                                                <div class="form-group">
+                                                    <label for="sms" class="icon-required">命令内容:</label>
+                                                    <textarea  class="form-control" id="sms" name="sms"
+                                                               data-parsley-length="[1, 40]"  data-parsley-trigger="blur"  placeholder="请输入命令内容"  required></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="hidden" name="did" value="">
+                                                    <input type="button" class="button pull-left" id="device-send-comand-button" value="发送命令">
+                                                    <div class="checkbox">
+                                                        <label ><input id="device-led-checkbox" type="checkbox"> LED开关 </label>
+                                                        <label ><input id="device-alert-checkbox" type="checkbox"> 警报开关 </label>
+                                                    </div>
+
+                                                    <!--<a href="javascrit:void(0);" class="btn btn-default " id="send-comand-button">-->
+                                                    <!--发送命令-->
+                                                    <!--</a>-->
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label for="sms" class="icon-required">命令响应:</label>
+                                                <textarea  class="form-control" id="sms-reply" name="sms-reply" disabled="disabled"
+                                                           placeholder=""></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="modal-footer">
+                                        <button type="button" data-dismiss="modal" class="btn    btn-default">关闭</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <script>
+                $(function () {
+                    $("#change_page_rows").val("10");
+                });
+            </script>
+
+
+            <script src="/static/admin/js/device_send_command.js"></script>
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <!--删除操作modal-->
+    <div class="modal fade" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modal_message">您确认执行本次操作吗？</p>
+                    <input name="modal_do_url" id="modal_do_url" value="" placeholder="modal_do_url" type="hidden">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button onclick="modal_do()" type="button" class="btn btn-default">确认</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--/.删除操作modal-->
+
+    <!--通用警告框-->
+    <div class="alert  alert-pop-up" id="alert-common" style="display: none"></div>
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>V</b> 1.0
+        </div>
+        <strong>Copyright © 2017 <a></a>.</strong> All rights
+        reserved.
+    </footer>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!--Bootstrap 3.3.7-->
+<script src="/static/admin/js/bootstrap.min.js"></script>
+<!--jquery-ui-->
+<script src="/static/admin/js/jquery-ui.min.js"></script>
+<!--parsley-->
+<script src="/static/admin/js/parsley.min.js"></script>
+<!--morris-->
+<script src="/static/admin/js/raphael.min.js"></script>
+<script src="/static/admin/js/morris.min.js"></script>
+
+<script src="/static/admin/js/jquery.cookie.min.js"></script>
+
+<script src="/static/admin/js/AdminLTE.js"></script>
+<script src="/static/admin/js/common.js"></script>
+
+<script>
+    $(function () {
+        var error_msg = $('#public-error_message');
+        if (typeof  msg != undefined) {
+            error_msg.delay(500).fadeIn();
+            error_msg.delay(2000).fadeOut("slow");
+        }
+
+        var succe_msg = $('#public-success_message');
+        if (typeof  msg1 != undefined) {
+            succe_msg.delay(500).fadeIn();
+            succe_msg.delay(2000).fadeOut("slow");
+        }
+
+    });
+
+    /*定义批量删除id*/
+    var data_del_url = "/admin/device/del.html";
+    var del_ids = [];
+    function del(id, url) {
+        var modal_do_url;
+        if (!url) {
+            modal_do_url = data_del_url;
+        }else
+            modal_do_url = url;
+        modal_do_url = modal_do_url + "?id=" + id;
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+    }
+
+    function dels(url) {
+        if(del_ids.length<1){
+            return false;
+        }
+
+        var id_url='';
+        var modal_do_url = url;
+        modal_do_url = modal_do_url + "?";
+
+        $.each(del_ids,function (index, item) {
+
+            id_url = id_url+"id[]="+item+"&";
+        });
+
+        modal_do_url = modal_do_url+id_url;
+
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+    }
+
+    function del_list(arr, url) {
+        var modal_do_url;
+        if (!url) {
+            modal_do_url = data_del_url;
+        }else
+            modal_do_url = url;
+
+        modal_do_url = modal_do_url + "?id=" + arr;
+        $("#modal_do_url").val(modal_do_url);
+    }
+
+    /*删除操作*/
+    function modal_do() {
+        var url = $("#modal_do_url").val();
+        console.log(url);
+        if(url==''){
+            return false;
+        }
+        window.location.href = url;
+    }
+
+    /*列表中单个选择和取消*/
+    function check_this(obj) {
+        var id = $(obj).attr('value');
+        if ($(obj).is(':checked')) {
+            if ($.inArray(id, del_ids) < 0) {
+                del_ids.push(id);
+            }
+        } else {
+            if ($.inArray(id, del_ids) > -1) {
+                del_ids.splice($.inArray(id, del_ids), 1);
+            }
+        }
+        console.log(del_ids);
+    }
+
+    /*全部选择/取消*/
+    function check_all(obj) {
+        del_ids = [];
+        var all_check = $("input[name='data-checkbox']");
+        if ($(obj).is(':checked')) {
+            all_check.prop("checked",true);
+            $(all_check).each(function () {
+                del_ids.push(this.value);
+            });
+        }else{
+            all_check.prop("checked",false);
+        }
+        console.log(del_ids);
+
+    }
+
+
+    function modal_do_single_deal(url,idname,idvalue) {
+        var modal_do_url=url;
+        if (modal_do_url.indexOf("?") == -1) //不带参数
+            modal_do_url = modal_do_url + "?";
+        else//带参数
+            modal_do_url = modal_do_url + "&";
+
+        modal_do_url = modal_do_url+idname+"=" + idvalue;
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+
+    }
+
+    function modal_do_multi_deal(url,idname) {
+        if(del_ids.length<1){
+            return false;
+        }
+        var modal_do_url = url;
+        if (modal_do_url.indexOf("?") == -1) //不带参数
+            modal_do_url = modal_do_url + "?";
+        else//带参数
+            modal_do_url = modal_do_url + "&";
+
+        var id_url='';
+        $.each(del_ids,function (index, item) {
+
+            id_url = id_url+idname+'[]='+item+"&";
+        });
+
+        modal_do_url = modal_do_url+id_url;
+
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+
+    }
+
+</script>
+
+
+</body></html>

@@ -1,0 +1,233 @@
+{extend name="public/base"/}
+{block name="main"}
+<div class="content-wrapper" style="min-height: 480px;">
+    <section class="content-header">
+        <h1>用户管理</h1>
+        <ol class="breadcrumb">
+            <li><a href="{:url('__HOME__')}"><i class="fa fa-home"></i> 主页</a>
+            </li>
+            <li><a href="javascript:void(0);"><i class="fa fa-user"></i> 用户中心</a>
+            </li>
+            <li><a href="javascript:void(0);"><i class="fa fa-user-secret"></i> 用户管理</a>
+            </li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content" id="section-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body">
+                        <!--<form class="form-inline">-->
+                        <form class="form-inline" name="searchForm" id="searchForm" action="index" method="GET">
+                            <div class="form-group">
+                                <input type="text" value="" name="keywords" id="keywords" class="form-control" placeholder="帐号/用户名/手机号/邮箱">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" type="submit" id="searchBtn" onload="loadContent"><i class="fa fa-search"></i>
+                                    查询</button>
+                            </div>
+                            <div class="form-group">
+                                <button onclick="clear_form()" class="btn btn-default" type="button"><i class="fa  fa-eraser"></i> 清空查询</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <!--数据列表页头部-->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">用户管理</h3>
+                        共<span style="font-size: 18px"><strong>{$count}</strong></span>条记录
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-btn">
+                                    <a href="{:url('admin/admin/add')}" class="btn btn-default pull-right"> <i class="fa fa-plus"></i>
+                                        添加用户</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-header">
+                        <a data-toggle="modal" data-target="#modal" class="btn btn-default btn-sm " title="批量删除数据，请谨慎使用此功能" onclick="dels()"> <i class="fa fa-close"></i>
+                            批量删除</a>
+                    </div>
+
+                    <div class="box-body table-responsive">
+                        <table id="datalist" class="table table-hover table-bordered datatable" width="100%">
+                            <thead>
+                            <tr class="show-datatable-list-title">
+                                <th>
+                                    <input type="checkbox" onclick="check_all(this)" class="checkbox" placeholder="全选/取消">
+                                </th>
+                                <th>用户ID</th>
+                                <th>登入帐号</th>
+                                <th>用户昵称</th>
+                                <th>所属角色</th>
+                                <th>手机</th>
+                                <th>邮箱</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {volist name="adminInfo" id="vo"}
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" onclick="check_this(this)" name="data-checkbox"
+                                               data-id="{$vo.admin_id}" class="checkbox data-list-check"
+                                               value="{$vo.admin_id}"
+                                               placeholder="选择/取消">
+                                    </td>
+                                    <td>{$vo.admin_id}</td>
+                                    <td>{$vo.admin_name}</td>
+                                    <td>{$vo.admin_nickname}</td>
+                                    <td>
+                                        {if $vo.admin_role == 1}超级管理员{/if}
+                                        {if $vo.admin_role == 0}普通管理员{/if}
+                                    </td>
+                                    <td>{$vo.admin_telephone}</td>
+                                    <td>{$vo.admin_email}</td>
+                                    <td>
+                                        {if $vo.admin_status == 1}正常{/if}
+                                        {if $vo.admin_status == 2}异常{/if}
+                                        {if $vo.admin_status == 0}禁用{/if}
+                                        <!--{$vo.admin_status}-->
+                                    </td>
+                                    <td>
+                                        <a href="{:url('admin/admin/edit', ['admin_id' => $vo.admin_id])}" class="btn btn-default btn-sm ">
+                                            <i class="fa fa-edit"></i>
+                                            编辑
+                                        </a>
+                                        <a data-toggle="modal" data-target="#modal"
+                                           class="btn btn-default btn-sm "
+                                           title="删除" onclick="del('{$vo.admin_id}')">
+                                            <i class="fa fa-close"></i>
+                                            删除
+                                        </a>
+                                        <!--<a  id="rm_button"  class="btn btn-default btn-sm admin-del" title="删除" dataid="{$vo.admin_id}" >-->
+                                            <!--<i class="fa fa-close" ></i>-->
+                                            <!--删除-->
+                                        <!--</a>-->
+                                    </td>
+                                </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="dataTables_paginate paging_simple_numbers" style="display: inline-block">
+                        {$adminInfo->render()|raw}
+                        </div>
+                        <!--<div>-->
+                            <!--<div class="dataTables_paginate paging_simple_numbers"></div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+<!--<div class="alert alert-danger alert-dismissible admin-do-alert" id="public-error_message" style="display: none;"></div>-->
+
+{/block}
+<!--{block name="modalValue"}-->
+<!--{$adminInfo.admin_id}-->
+<!--{/block}-->
+
+{block name="js"}
+<script>
+    var data_del_url = "{:url('admin/admin/del')}"
+    //删除单个
+    function del(id, url) {
+        var modal_do_url;
+        if (!url) {
+            modal_do_url = data_del_url;
+        }else
+            modal_do_url = url;
+        modal_do_url = modal_do_url + "?id=" + id;
+        $("#modal_do_url").val(modal_do_url);
+
+        console.log(modal_do_url);
+    }
+    //批量删除
+    function dels(url) {
+        if (del_ids.length < 1) {
+            return false;
+        }
+        var id_url = '';
+        var modal_do_url;
+        if (!url) {
+            modal_do_url = data_del_url;
+        } else{
+            // var modal_do_url = url;
+            var modal_do_url = url;
+        }
+        modal_do_url = modal_do_url + "?";
+
+        $.each(del_ids,function (index, item) {
+            id_url = id_url+"id[]="+item+"&";
+        });
+
+        modal_do_url = modal_do_url+id_url;
+
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+    }
+
+    function del_list(arr, url) {
+        var modal_do_url;
+        if (!url) {
+            modal_do_url = data_del_url;
+        }else
+            modal_do_url = url;
+
+        modal_do_url = modal_do_url + "?id=" + arr;
+        $("#modal_do_url").val(modal_do_url);
+    }
+
+    /*删除操作*/
+    function modal_do() {
+        var url = $("#modal_do_url").val();
+        console.log(url);
+        if(url==''){
+            return false;
+        }
+        // window.location.href = url;
+        $.ajax({
+            url:url,
+            type: 'post',
+            dataType: 'json',
+            success:function(data){
+                $("#cancelBtn").click();
+                alert(data.msg);
+                console.log(data);
+                //删除成功
+                if(data.code == 200){
+                    window.location.reload();
+                }
+                //删除失败 权限不够
+                else if(data.res_code == 302){
+                    $("#cancelBtn").click();
+                    // $("#modal_message").html(data.msg);
+                    // $('#public-error_message').html(data.msg);
+                    msg = data.msg;
+                    console.log(msg);
+                }
+                // window.location.href = "javascript:void(-1);"
+            }
+        });
+    }
+
+</script>
+{/block}

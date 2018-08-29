@@ -1,0 +1,85 @@
+{extend name="public/base" /}
+
+{block name="title"}设备中心{/block}
+
+{block name="main"}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="min-height: 480px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>编辑供应商信息</h1>
+        <ol class="breadcrumb">
+            <li><a href="monitor"><i class="fa fa-home"></i> 主页</a></li>
+            <li><a href="device"><i class="fa fa-cubes"></i> 设备中心</a></li>
+            <li><a href="javascript:void(0);"><i class="fa fa-edit"></i>编辑供应商信息</a></li></ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content" id="section-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <form role="form" method="post">
+                        <input type="hidden" name="supplier_id" value="{$supplierInfo.supplier_id}">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="supplierName" class="icon-required">供应商名称:</label>
+                                <input type="text" class="form-control" id="supplierName" name="supplier_name" value="{$supplierInfo.supplier_name}" required pattern="^.{1,20}$" data-parsley-trigger="keyup" placeholder="请输入供应商名称" data-parsley-id="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactName" class="icon-required">联系人姓名:</label>
+                                <input type="text" class="form-control" id="contactName" name="contact_name" value="{$supplierInfo.contact_name}" required pattern="^.{1,10}$" placeholder="请输入联系人姓名" data-parsley-trigger="keyup" data-parsley-id="2">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail" class="icon-required">联系邮箱:</label>
+                                <input type="email" class="form-control" id="contactEmail" name="contact_email" value="{$supplierInfo.contact_email}" data-parsley-pattern="^.{1,30}$" placeholder="请输入联系邮箱" data-parsley-trigger="keyup" data-parsley-id="3">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone" class="icon-required">手机号码:</label>
+                                <input type="number" class="form-control" id="contactPhone" name="contact_phone" value="{$supplierInfo.contact_phone}" required pattern="^.{1,11}$" placeholder="请输入手机号码" data-parsley-trigger="keyup" data-parsley-id="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactTel" class="icon-required">联系电话:</label>
+                                <input type="number" class="form-control" id="contactTel" name="contact_tel" value="{$supplierInfo.contact_tel}" required pattern="^.{1,11}$" placeholder="请输入联系电话" data-parsley-trigger="keyup" data-parsley-id="5">
+                            </div>
+                        </div>
+
+                        <div class="box-footer">
+                            <!--<input type="hidden" name="__token__" value="">-->
+                            <a href="javascript:history.back(-1);" class="btn btn-default">
+                                <i class="fa fa-arrow-left"></i>返回</a>
+                            <button type="submit" id="supplierEdit" name="supplieredit" class="btn btn-default pull-right">
+                                <i class="fa fa-save"></i>确定</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+{/block}
+{block name="js"}
+<script>
+    $(function () {
+        $('#supplierEdit').click(function () {
+            $.ajax({
+                url:"{:url('admin/supplier/edit')}",
+                type:'post',
+                data:$('form').serialize(),
+                dataType:'json',
+                success:function (data) {
+                    alert(data.msg);
+                    //  if (data.code == 200) {
+                    location.reload();
+                    //   }else {
+                    // location.href = "javascript:void(-1)";
+                    //   }
+
+                }
+            });
+            return false;
+        });
+    });
+</script>
+{/block}

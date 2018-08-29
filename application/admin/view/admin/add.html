@@ -1,0 +1,129 @@
+{extend name="public/base" /}
+{block name="title"}添加用户{/block}
+
+{block name="main"}
+<div class="content-wrapper" style="min-height: 480px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>添加用户</h1>
+
+        <ol class="breadcrumb">
+            <li><a href="{:url('__HOME__')}"><i class="fa fa-home"></i> 主页</a>
+            </li>
+            <li><a href="javascript:history.back(-1);"><i class="fa fa-user"></i> 用户中心</a>
+            </li>
+            <li><a href="javascript:void(0);"><i class="fa fa-plus"></i> 添加用户</a>
+            </li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content" id="section-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <form action="index.html" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="adminName" class="icon-required">登入帐号</label>
+                                <input type="text" class="form-control" id="adminName" name="admin_name" required="" placeholder="管理员账号">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminPassword" class="icon-required">密码</label>
+                                <input type="text" class="form-control" id="adminPassword" name="admin_password" required pattern="^.{1,16}$" data-parsley-pattern-message="设备名称最多设置16个字符" data-parsley-trigger="keyup" placeholder="管理员密码" data-parsley-id="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminComPassword" class="icon-required">确认密码</label>
+                                <input type="text" class="form-control" id="adminComPassword" name="con_password" required pattern="^.{1,16}$" data-parsley-pattern-message="设备名称最多设置16个字符" data-parsley-trigger="keyup" placeholder="管理员密码" data-parsley-id="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminNickname" class="icon-required">用户昵称</label>
+                                <input type="text" class="form-control" id="adminNickname" name="admin_nickname" data-parsley-required="true" data-parsley-pattern="/^[a-zA-Z0-9]{1,512}$/i" data-parsley-maxlength="512" placeholder="请输入自定义字符串" data-parsley-pattern-message="最多设置512个字母、数字或字母与数字组合的字符串"
+                                       data-parsley-trigger="keyup" data-parsley-id="6">
+                                <!--<label class="show-other-font"></label>-->
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="adminTelephone" class="icon-required">手机</label>
+                                <input type="text" class="form-control" id="adminTelephone" name="admin_telephone" required pattern="^.{1,16}$" data-parsley-pattern-message="设备名称最多设置16个字符" data-parsley-trigger="keyup" placeholder="管理员电话" data-parsley-id="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminEmail" class="icon-required">邮箱</label>
+                                <input type="text" class="form-control" id="adminEmail" name="admin_email"   placeholder="管理员邮箱" >
+                            </div>
+                            <!--角色-->
+                            <div class="form-group">
+                                <label for="adminRole" class="icon-required">状态</label>
+                                <div class="icon-required">
+                                    <select id="adminRole" name="admin_role" class="form-control">
+                                        <option value="">请选择</option>
+                                        <option value="0" selected>普通管理员</option>
+                                        <option value="1" >超级管理员</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--/.角色-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="adminEmail" class="icon-required">状态</label>-->
+                                <!--<input type="text" class="form-control" id="adminStatus" name="admin_status"   placeholder="管理员邮箱" >-->
+                            <!--</div>-->
+                            <!--状态-->
+                            <div class="form-group">
+                                <label for="adminStatus" class="icon-required">状态</label>
+                                <div class="icon-required">
+                                    <select id="adminStatus" name="admin_status" class="form-control">
+                                        <option value="">请选择</option>
+                                        <option value="0" >禁用</option>
+                                        <option value="1" selected>正常</option>
+                                        <option value="2" >异常</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--/.状态-->
+                        </div>
+
+                        <div class="box-footer">
+                            <!--<input type="hidden" name="__token__" value="abfd0fb3a62f29ec57db109c9654fbfa">-->
+                            <a href="javascript:history.back(-1);" class="btn btn-default"> <i class="fa fa-arrow-left"></i>
+                                返回</a>
+                            <button type="submit" id="save" name="save" class="btn btn-default pull-right"> <i class="fa fa-save"></i>
+                                保存</button>
+                        </div>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+{/block}
+{block name="js"}
+<script>
+    // $(function () {
+
+        $('#save').click(function () {
+            $.ajax({
+                url:"{:url('admin/admin/add')}",
+                type:'post',
+                data: $('form').serialize(),
+                dataType: 'json',
+                success:function (data) {
+                    alert(data.msg);
+                    if(data.code == 200){
+                        console.log(data);
+                        window.location.href = history.back();
+                    }else{
+                        console.log(data);
+                    }
+                }
+            });
+            return false;
+        });
+    // });
+
+</script>
+{/block}

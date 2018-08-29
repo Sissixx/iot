@@ -1,0 +1,177 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="__STATIC__/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__STATIC__/admin/css/login.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="__STATIC__/admin/js/html5shiv.min.js"></script>
+    <script src="__STATIC__/admin/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="hold-transition login-page">
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="404 页面不存在.html">北博AI-Fence电子围界</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">登入账号进入后台</p>
+        <div id="error_message" class="" style="margin-bottom: 5px;color: red;text-align: center;font-size: 18px">
+        </div>
+        <form method="post"  action="" id="form1" onsubmit="doSumit()" data-parsley-validate>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <input id="user_name" name="username" type="text" class="form-control parsley-success" required  data-parsley-length="[1, 16]" data-parsley-trigger="blur" placeholder="帐号" data-parsley-id="5">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <input name="password" type="password" class="form-control" required  data-parsley-length="[1, 16]" data-parsley-trigger="blur" placeholder="密码">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div class="row">-->
+                <!--<span class="form-group has-feedback"><img id="captcha_img" src="captcha.html" alt="验证码" onClick="refreshCaptcha()"></span>-->
+                <!--<div class="col-xs-12">-->
+                    <!--<div class="form-group has-feedback"><a href="javascript:refreshCaptcha()" style="margin-left: 10px">点击刷新</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-xs-12">-->
+                    <!--<div class="form-group has-feedback">-->
+                        <!--<input type="text" name="captcha" id="captcha" class="form-control" required data-parsley-trigger="blur" placeholder="验证码">-->
+                        <!--<span class="glyphicon glyphicon-random form-control-feedback"></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-xs-8">-->
+                    <!--<div class="form-group ">-->
+                        <!--<div class="checkbox">-->
+                            <!--<label id="remember_me">-->
+                                <!--<input id="remember_checkbox" type="checkbox" data-parsley-multiple="remember_checkbox"/> 记住我-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="col-xs-4">-->
+                    <!--<div class="form-group " style="text-align: right">-->
+                        <!--<input placeholder="记住密码" hidden="" name="is_remember" id="is_remember" value="0">-->
+                        <!--<input type="hidden" name="__token__" value="a105d14f1f9386eae80af4658314f05e">-->
+                        <!--<a href="404 页面不存在.html" class="forget-pwd" target="_blank">忘记密码</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--表单令牌 token-->
+            <input type="hidden" name="__token__" value="{$Request.token}" />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" id="login_button">登&nbsp;&nbsp;&nbsp;录</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /.login-box -->
+<script src="__STATIC__/admin/js/jquery.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<script src="__STATIC__/admin/js/parsley.min.js"></script>
+
+<script>
+    Parsley.addMessages('zh-cn', {
+        defaultMessage: "不正确的值",
+        type: {
+            email:        "请输入一个有效的电子邮箱地址",
+            url:          "请输入一个有效的链接",
+            number:       "请输入正确的数字",
+            integer:      "请输入正确的整数",
+            digits:       "请输入正确的号码",
+            alphanum:     "请输入字母或数字"
+        },
+        notblank:       "请输入值",
+        required:       "必填项",
+        pattern:        "格式不正确",
+        min:            "输入值请大于或等于 %s",
+        max:            "输入值请小于或等于 %s",
+        range:          "输入值应该在 %s 到 %s 之间",
+        minlength:      "请输入至少 %s 个字符",
+        maxlength:      "请输入至多 %s 个字符",
+        length:         "字符长度应该在 %s 到 %s 之间",
+        mincheck:       "请至少选择 %s 个选项",
+        maxcheck:       "请选择不超过 %s 个选项",
+        check:          "请选择 %s 到 %s 个选项",
+        equalto:        "输入值不同"
+    });
+
+    Parsley.setLocale('zh-cn');
+
+    //记住我
+    function doSumit() {
+        if ($('#remember_checkbox').prop('checked')) {
+            $('#is_remember').val(1);
+        } else {
+            $('#is_remember').val(0);
+        }
+    }
+
+    //刷新验证码
+    function refreshCaptcha() {
+        var ts = Date.parse(new Date()) / 1000;
+        $("#captcha_img").attr('src', "./登录_files/captcha.html"+"?id=" + ts);
+    }
+
+    $(function () {
+        $("#user_name").focus();
+    });
+
+    // $(function () {
+    $("#login_button").click(function () {
+        // $("input[name='__token__']").val("{$Request.token}");
+        $.ajax({
+            url:"{:url('admin/index/login')}",
+            type:'post',
+            data:$('form').serialize(),
+            dataType:'json',
+
+            success:function(data){
+                // 登录成功
+                $("input[name='__token__']").val(data.__token__);
+                console.log(data);
+                if(data.code == 200){
+                    location.href = "{:url('admin/admin/index')}";
+                }else{
+                    $("#error_message").html(data.msg);
+                }
+            }
+        });
+        return false;
+    });
+
+    // })
+</script>
+
+</body>
+</html>

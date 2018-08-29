@@ -1,0 +1,215 @@
+{extend name="public/base"/}
+{block name="title"}编辑管理员{/block}
+{block name="main"}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>个人资料</h1>
+
+        <ol class="breadcrumb">
+            <li><a href="{:url('__HOME__')}"><i class="fa fa-home"></i> 主页</a>
+            </li>
+            <li><a href=javascript:void(0);><i class="fa fa-user-secret"></i> 用户中心</a>
+            </li>
+            <li><a href=javascript:void(0);><i class="fa fa-edit"></i> 修改资料</a>
+            </li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content" id="section-content">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="box box-default">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="/uploads/admin/avatar/{$adminInfo.admin_id}.png"alt="头像">
+                        <h3 class="profile-username text-center">体验账号</h3>
+
+                        <p class="text-muted text-center">demo</p>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!-- About Me Box -->
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">详情资料</h3>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body"> <strong><i class="fa  fa-phone"></i> 手机</strong>
+
+                        <p class="text-muted">{$adminInfo.admin_telephone}</p>
+                        <hr> <strong><i class="fa fa-envelope"></i> 邮箱</strong>
+
+                        <p class="text-muted">{$adminInfo.admin_email}</p>
+                        <hr> <strong><i class="fa fa-map-marker margin-r-5"></i> 城市</strong>
+
+                        <p class="text-muted"></p>
+                        <hr> <strong><i class="fa fa-file-text-o margin-r-5"></i> 简介</strong>
+
+                        <p></p>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-9">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">个人信息</a>
+                        </li>
+                        <li class=""><a href="#privacy" data-toggle="tab" aria-expanded="false">修改密码</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <form class="form-horizontal" id="form1">
+                                <input type="hidden" name="admin_id" value="{$adminInfo.admin_id}"/>
+                                <div class="form-group">
+                                    <label for="nickname" class="col-sm-2 control-label">昵称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="{$adminInfo.admin_nickname}" name="admin_nickname" id="nickname" maxlength="30" placeholder="昵称或姓名">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone" class="col-sm-2 control-label">手机</label>
+                                    <div class="col-sm-10">
+                                        <input type="tel" class="form-control" value="{$adminInfo.admin_telephone}" name="admin_telephone" id="telephone" placeholder="手机号">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">邮箱</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" value="{$adminInfo.admin_email}" name="admin_email" id="email" placeholder="邮箱">
+                                    </div>
+                                </div>
+                                <!--只有超级管理员才可以修改权限和状态-->
+                                <!--{if $adminInfo.admin_role == 1 || (session('admin.role') == 1)}-->
+                                {if session('admin.role') == 1}
+                                <!--角色-->
+                                <div class="form-group">
+                                    <label for="adminRole" class="col-sm-2 control-label">角色</label>
+                                    <div class="col-sm-2 control-label">
+                                        <select id="adminRole" name="admin_role" class="form-control" >
+                                            <option value="" disabled>请选择</option>
+                                            <option value="0"  {if $adminInfo.admin_role == 0}selected{/if}>普通管理员</option>
+                                            <option value="1"  {if $adminInfo.admin_role == 1}selected{/if}>超级管理员</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--/.角色-->
+                                <!--状态-->
+                                <div class="form-group">
+                                    <label for="adminStatus" class="col-sm-2 control-label">状态</label>
+                                    <div class="col-sm-2 control-label">
+                                        <select id="adminStatus" name="admin_status" class="form-control">
+                                            <option value="" disabled>请选择</option>
+                                            <option value="0" {if $adminInfo.admin_status == 0}selected{/if}>禁用</option>
+                                            <option value="1" {if $adminInfo.admin_status == 1}selected{/if}>正常</option>
+                                            <option value="2" {if $adminInfo.admin_status == 2}selected{/if}>异常</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--/.状态-->
+                                {/if}
+                                <!--<input type="hidden" name="__token__" value="653513e3f8ce663c31aa0e08deff5b5a" />-->
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" id="proSaveBtn" class="btn btn-default">保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="privacy">
+                            <form class="form-horizontal" id="form2">
+                                <!--<div class="form-group" style="display: none">-->
+                                    <!--<label for="social_form" class="col-sm-2 control-label">更新方式</label>-->
+                                    <!--<div class="col-sm-10">-->
+                                        <!--<input type="hidden" value="password" class="form-control" name="update_type" id="password_form" placeholder="">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <input type="hidden" name="admin_id" value="{$adminInfo.admin_id}"/>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-2 control-label">当前密码</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="own_password" id="password" placeholder="请输入当前密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword" class="col-sm-2 control-label">新密码</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="new_password" id="newPassword" placeholder="请输入新密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comPassword" class="col-sm-2 control-label">确认新密码</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="con_password" id="comPassword" placeholder="请再一次输入新密码">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="__token__" value="653513e3f8ce663c31aa0e08deff5b5a" />
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" id="pwdSaveBtn" class="btn btn-default">保存</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+{/block}
+
+{block name="js"}
+<script>
+    $('#proSaveBtn').click(function () {
+        $.ajax({
+            url:"{:url('admin/admin/edit')}",
+            type:'post',
+            data:$('#form1').serialize(),
+            dataType:'json',
+            async:"true",
+            success:function (data) {
+                alert(data.msg)
+                if(data.code == 200){
+                    //成功
+                    location.reload();
+                }
+                else if(data.code == 400){
+                    //失败
+                    // window.location.href = ;
+                }
+            }
+        })
+    })
+
+
+    //密码
+    $('#pwdSaveBtn').click(function () {
+        $.ajax({
+            url:"{:url('admin/admin/changepassword')}",
+            type:'post',
+            data:$('#form2').serialize(),
+            dataType:'json',
+            async:"true",
+            success:function (data) {
+                alert(data.msg)
+                if(data.code == 200){
+                    //成功
+                    location.reload();
+                }
+                else if(data.code == 400){
+                    href.location = history.back();
+                }
+            }
+        })
+    })
+</script>
+{/block}

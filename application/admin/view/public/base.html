@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html style="height: auto; min-height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    <title>{block name="title"}{/block}</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Bootstrap 3.3.7 -->
+    <link href="__STATIC__/admin/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="__STATIC__/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Ionicons -->
+    <link href="__STATIC__/admin/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Morris charts -->
+    <link href="__STATIC__/admin/css/morris.css" rel="stylesheet">
+
+    <!--&lt;!&ndash;jquery-ui&ndash;&gt;-->
+    <link href="__STATIC__/admin/css/jquery-ui.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="__STATIC__/admin/css/AdminLTE.css">
+    <link rel="stylesheet" href="__STATIC__/admin/css/common.css">
+
+    <!--jQuery 3 &ndash;&gt;-->
+    <script src="__STATIC__/admin/js/jquery.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="__STATIC__/admin/js/html5shiv.min.js"></script>
+    <script src="__STATIC__/admin/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+<div class="wrapper" style="height: auto; min-height: 100%;">
+    <header class="main-header">
+        <!-- Logo -->
+        <a class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>北博</b>智能AI-Fence</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b></b>北博智能AI-Fence</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <!--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">-->
+            <!--<span class="sr-only">切换导航</span>-->
+            <!--</a>-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="__STATIC__/admin/img/avatar.png" class="user-image" alt="User Image">
+                            <span class="hidden-xs">
+                                {if session('admin.role') == 1}
+                                    超级管理员
+                                {else /}
+                                    普通管理员
+                                {/if}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="__STATIC__/admin/img/avatar.png" class="img-circle" alt="User Image">
+                                <p>
+                                    {if session('admin.role') == 1}
+                                    超级管理员
+                                    {else /}
+                                    普通管理员
+                                    {/if}<small>{:session('admin.name')}</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#"></a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{:url('admin/admin/profile')}" class="btn btn-default btn-flat">个人资料</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a  class="btn btn-default btn-flat login_out">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar" >
+            <!--Sidebar user panel-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="__STATIC__/admin/img/avatar.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p></p>
+                    <a><i class="fa fa-circle text-success"></i> 正常</a>
+                </div>
+            </div>
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu tree" data-widget="tree">
+                <li>
+                    <a href="监控中心.html">
+                        <i class="fa fa-bar-chart"></i>
+                        <span>监控中心</span>
+                    </a>
+                </li><li>
+                <a href="告警中心.html">
+                    <i class="fa fa-bell"></i>
+                    <span>告警中心</span>
+                </a>
+            </li><li class="active">
+            </li><li class="treeview"><a href="javascript:void(0);"><i class="fa fa-user-secret"></i><span>设备中心</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+            </a>
+                <ul class="treeview-menu">
+                <li>
+                    <a href="{:url('admin/device/index')}">
+                        <i class="fa fa-group"></i>
+                        <span>设备管理</span>
+                    </a>
+                <li>
+                    <a href="{:url('admin/supplier/index')}">
+                        <i class="fa fa-group"></i>
+                        <span>设备商管理</span>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="javascript:void(0);">
+                    <i class="fa fa-user-secret"></i>
+                    <span>用户中心</span>
+                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{:url('admin/admin/index')}">
+                            <i class="fa fa-user-secret"></i>
+                            <span>用户管理</span>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="权限管理.html">
+                        <i class="fa fa-group"></i>
+                        <span>权限管理</span>
+                    </a>
+                    </li>
+                    <li>
+                    <a href="用户日志.html">
+                        <i class="fa fa-close"></i>
+                        <span>用户日志</span>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="{:url('admin/admin/profile')}">
+                            <i class="fa fa-edit"></i>
+                            <span>个人资料</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="javascript:void(0);">
+                    <i class="fa fa-cog"></i>
+                    <span>系统管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="System Error.html">
+                        <i class="fa fa-bell"></i>
+                        <span>触发器管理</span>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="菜单管理.html">
+                            <i class="fa fa-th-list"></i>
+                            <span>菜单管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="系统运行日志.html">
+                            <i class="fa fa-info-circle"></i>
+                            <span>系统运行日志</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+        <!-- Content Header (Page header) -->
+    {block name="main"}
+    {/block}
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>V</b> 1.0
+        </div>
+        <strong>北博（厦门）智能科技有限公司 Copyright © 2018 <a></a>.</strong> All rights reserved.
+    </footer>
+</div>
+<!-- ./wrapper -->
+<!--删除操作modal-->
+<div class="modal fade" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modal_message">您确认执行本次操作吗？</p>
+                <input name="modal_do_url" id="modal_do_url" value="" placeholder="modal_do_url" type="hidden">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left " id="cancelBtn" data-dismiss="modal">取消</button>
+                <button onclick="modal_do()" type="button" class="btn btn-default">确认</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--/.删除操作modal-->
+
+<!--通用警告框-->
+<!--<div class="alert  alert-danger  alert-dismissible admin-do-alert" id="public-error_message" style="display: none">-->
+    <!--<h4><i class="icon fa fa-ban"></i> 错误提示!</h4>-->
+    <!--当前用户无操作权限-->
+<!--</div>-->
+<!--成功提示框-->
+<!--<div class="alert alert-success" role="alert">...</div>-->
+<!--Bootstrap 3.3.7-->
+<script src="__STATIC__/admin/js/bootstrap.min.js"></script>
+<!--jquery-ui-->
+<script src="__STATIC__/admin/js/jquery-ui.min.js"></script>
+<!--parsley-->
+<script src="__STATIC__/admin/js/parsley.min.js"></script>
+<!--morris-->
+<script src="__STATIC__/admin/js/raphael.min.js"></script>
+<script src="__STATIC__/admin/js/morris.min.js"></script>
+
+<script src="__STATIC__/admin/js/jquery.cookie.min.js"></script>
+
+<script src="__STATIC__/admin/js/AdminLTE.js"></script>
+<script src="__STATIC__/admin/js/common.js"></script>
+<script>
+
+    var msg = null;
+
+
+    /*定义批量删除id*/
+    var data_del_url = "{:url('admin/admin/del')}";
+    var del_ids = [];
+    function del(id, url) {
+        var modal_do_url;
+        if (!url) {
+            modal_do_url = data_del_url;
+        }else
+            modal_do_url = url;
+        modal_do_url = modal_do_url + "?id=" + id;
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+    }
+
+
+    /*列表中单个选择和取消*/
+    function check_this(obj) {
+        var id = $(obj).attr('value');
+        if ($(obj).is(':checked')) {
+            if ($.inArray(id, del_ids) < 0) {
+                del_ids.push(id);
+            }
+        } else {
+            if ($.inArray(id, del_ids) > -1) {
+                del_ids.splice($.inArray(id, del_ids), 1);
+            }
+        }
+        console.log(del_ids);
+    }
+
+    /*全部选择/取消*/
+    function check_all(obj) {
+        del_ids = [];
+        var all_check = $("input[name='data-checkbox']");
+        if ($(obj).is(':checked')) {
+            all_check.prop("checked",true);
+            $(all_check).each(function () {
+                del_ids.push(this.value);
+            });
+        }else{
+            all_check.prop("checked",false);
+        }
+        console.log(del_ids);
+
+    }
+
+
+    function modal_do_single_deal(url,idname,idvalue) {
+        var modal_do_url=url;
+        if (modal_do_url.indexOf("?") == -1) //不带参数
+            modal_do_url = modal_do_url + "?";
+        else//带参数
+            modal_do_url = modal_do_url + "&";
+
+        modal_do_url = modal_do_url+idname+"=" + idvalue;
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+
+    }
+
+    function modal_do_multi_deal(url,idname) {
+        if(del_ids.length<1){
+            return false;
+        }
+        var modal_do_url = url;
+        if (modal_do_url.indexOf("?") == -1) //不带参数
+            modal_do_url = modal_do_url + "?";
+        else//带参数
+            modal_do_url = modal_do_url + "&";
+
+        var id_url='';
+        $.each(del_ids,function (index, item) {
+
+            id_url = id_url+idname+'[]='+item+"&";
+        });
+
+        modal_do_url = modal_do_url+id_url;
+
+        $("#modal_do_url").val(modal_do_url);
+        console.log(modal_do_url);
+
+    }
+
+    Parsley.addMessages('zh-cn', {
+        defaultMessage: "不正确的值",
+        type: {
+            email:        "请输入一个有效的电子邮箱地址",
+            url:          "请输入一个有效的链接",
+            number:       "请输入正确的数字",
+            integer:      "请输入正确的整数",
+            digits:       "请输入正确的号码",
+            alphanum:     "请输入字母或数字"
+        },
+        notblank:       "请输入值",
+        required:       "必填项",
+        pattern:        "格式不正确",
+        min:            "输入值请大于或等于 %s",
+        max:            "输入值请小于或等于 %s",
+        range:          "输入值应该在 %s 到 %s 之间",
+        minlength:      "请输入至少 %s 个字符",
+        maxlength:      "请输入至多 %s 个字符",
+        length:         "字符长度应该在 %s 到 %s 之间",
+        mincheck:       "请至少选择 %s 个选项",
+        maxcheck:       "请选择不超过 %s 个选项",
+        check:          "请选择 %s 到 %s 个选项",
+        equalto:        "输入值不同"
+    });
+
+    Parsley.setLocale('zh-cn');
+
+
+
+    $(function () {
+        $("#user_name").focus();
+    });
+
+    //退出
+    // $(function () {
+            $('.login_out').click(function () {
+                // window.location.href = "{:url('admin/home/loginOut')}";
+                $.get("{:url('admin/home/loginout')}",function (data, status) {
+                    alert("Data: " + data.msg);
+                    window.location.href = data.url;
+                });
+                // console.log("12");
+                // $.ajax({
+            //     url:"{:url('admin/home/loginOut')}",
+            //     type:'get',
+            //     async:'true',
+            //     success:function (data) {
+            //         if(data.code == 200){
+            //             console.log(data);
+            //             location.href = data.url;
+            //         }else{
+            //             console.log(data);
+            //         }
+            //
+            //     }
+            // });
+
+            return false;
+        })
+    // })
+</script>
+
+{block name="js"}
+{/block}
+<script>
+    msg = null;
+    $(function msgShow() {
+        var error_msg = $('#public-error_message');
+        if (msg != null) {
+            error_msg.delay(500).fadeIn();
+            error_msg.delay(2000).fadeOut("slow");
+            msg = null;
+        }
+
+        var succe_msg = $('#public-success_message');
+        if (typeof  msg1 != undefined) {
+            succe_msg.delay(500).fadeIn();
+            succe_msg.delay(2000).fadeOut("slow");
+        }
+
+    });
+</script>
+</body>
+</html>
